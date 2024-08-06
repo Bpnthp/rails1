@@ -1,14 +1,33 @@
-<h1><%= @article.title %></h1>
+<div class="container mt-5">
+  <div class="article-header mb-4">
+    <h1 class="display-4"><%= @article.title %></h1>
+    <p class="lead"><%= @article.body %></p>
+  </div>
 
-<p><%= @article.body %></p>
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", @article, data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-  <li><%= link_to "New Article", new_article_path %></li>
-  <li><%= link_to "Home", root_path %></li>
+  <div class="comments-section mt-5">
+    <h2 class="h4">Comments</h2>
+    <div class="list-group">
+      <%= render @article.comments %>
+    </div>
+  </div>
 
+  <div class="add-comment-section mt-4">
+    <h2 class="h4">Add a comment:</h2>
+    <div class="card card-body">
+      <%= render 'comments/form' %>
+    </div>
+  </div >
+  <ul class="list-inline mt-3 mb-10">
+    <li class="list-inline-item">
+      <%= link_to "Edit", edit_article_path(@article), class: 'btn btn-primary' %>
+    </li>
+    <li class="list-inline-item">
+      <%= link_to "Destroy", @article, class: 'btn btn-danger', data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      } %>
+    </li>
+    <%= link_to 'Back', root_path, class: 'btn btn-secondary' %>
+  </ul>
+</div>
 
-</ul>
